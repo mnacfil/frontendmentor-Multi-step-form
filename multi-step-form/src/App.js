@@ -8,8 +8,8 @@ function App() {
         <StepsDesktop />
         {/* <Step1Form /> */}
         {/* <Step2Form /> */}
-        <Step3Form />
-        {/* <Step4Form /> */}
+        {/* <Step3Form /> */}
+        <Step4Form />
         {/* <ThankYou /> */}
       </div>
     </Wrapper>
