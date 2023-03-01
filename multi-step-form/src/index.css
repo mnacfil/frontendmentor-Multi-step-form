@@ -29,3 +29,47 @@ body {
   background-color:var(--Light-gray);
 }
 
+/* Global style */
+
+.form {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+.form-content {
+  padding: 2rem 0;
+}
+
+.form-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5rem;
+}
+.next-btn {
+  cursor: pointer;
+  background-color: var(--marine-blue);
+  color: var(--light-blue);
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  display: inline-block;
+}
+.goBack-btn {
+  text-decoration: none;
+  color: var(--Cool-gray);
+}
+.goBack-btn:hover {
+  color: var(--marine-blue);
+}
+.form-content h2 {
+  color: var(--marine-blue);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.form-content p {
+  color: var(--Cool-gray);
+  font-size: 14px;
+  margin-bottom: 2rem;
+}

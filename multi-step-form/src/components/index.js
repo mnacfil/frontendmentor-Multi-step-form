@@ -6,6 +6,7 @@ import Step3Form from './Step3Form';
 import Step4Form from './Step4Form';
 import ThankYou from './ThankYou';
 import FormControl from './FormControl';
+import ToggleSwitch from './ToggleSwitch';
 
 export {
     StepsDesktop,
@@ -14,5 +15,6 @@ export {
     Step2Form,
     Step3Form,
     Step4Form,
-    ThankYou
+    ThankYou,
+    ToggleSwitch
 };

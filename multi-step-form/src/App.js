@@ -6,9 +6,9 @@ function App() {
     <Wrapper>
       <div className="container">
         <StepsDesktop />
-        <Step1Form />
+        {/* <Step1Form /> */}
         {/* <Step2Form /> */}
-        {/* <Step3Form /> */}
+        <Step3Form />
         {/* <Step4Form /> */}
         {/* <ThankYou /> */}
       </div>
