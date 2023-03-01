@@ -55,6 +55,9 @@ body {
   border-radius: 8px;
   display: inline-block;
 }
+.next-btn:hover {
+  opacity: 0.9;
+}
 .goBack-btn {
   text-decoration: none;
   color: var(--Cool-gray);
