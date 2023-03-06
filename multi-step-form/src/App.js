@@ -1,16 +1,18 @@
 import { StepsDesktop, Step1Form, Step2Form, Step3Form, Step4Form, ThankYou } from './components';
 import styled from 'styled-components'
+import {useGlobalContext} from './context';
 
 function App() {
+  const {step} = useGlobalContext();
   return (
     <Wrapper>
       <div className="container">
         <StepsDesktop />
-        {/* <Step1Form /> */}
-        {/* <Step2Form /> */}
-        {/* <Step3Form /> */}
-        <Step4Form />
-        {/* <ThankYou /> */}
+        {step === 1 && <Step1Form />}
+        {step === 2 && <Step2Form />}
+        {step === 3 && <Step3Form />}
+        {step === 4 && <Step4Form />}
+        {step === 5 && <ThankYou />}
       </div>
     </Wrapper>
   );

@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const FormControl = ({name, type, placeholder, label}) => {
+const FormControl = ({name, type, placeholder, label, value, handleChange, initial}) => {
     return (
         <div className="form-control">
             <div>
                 <label htmlFor={name}>{label}</label>
-                <small className='error-msg'>
-                    This field is required
-                </small>
+                {!value && <small>This field is required</small>}
             </div>
             <input
                 type={type}
@@ -15,6 +13,8 @@ const FormControl = ({name, type, placeholder, label}) => {
                 name={name}
                 placeholder={placeholder}
                 className='form-input'
+                onChange={handleChange}
+                value={value}
             />
         </div>
     )

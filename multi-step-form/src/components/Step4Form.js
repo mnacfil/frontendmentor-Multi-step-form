@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useGlobalContext } from '../context'
 
 const Step4Form = () => {
-  const data = useGlobalContext();
+  const { setStep } = useGlobalContext();
   return (
     <Wrapper>
       <form className='form'>
@@ -49,8 +49,19 @@ const Step4Form = () => {
           </div>
         </div>
         <div className='form-button'>
-          <a href="#" className='goBack-btn'>Go back</a>
-          <button className='confirm-btn next-btn'>Confirm</button>
+          <a
+            href="#"
+            className='goBack-btn'
+            onClick={() => setStep(current => current - 1)}
+            >
+            Go back
+          </a>
+          <button
+            className='next-btn confirm-btn'
+            onClick={() => setStep(current => current + 1)}
+            >
+            Next Step
+          </button>
         </div>
       </form>
     </Wrapper>

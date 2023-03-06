@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
-import CheckMark from '../assets/images/icon-checkmark.svg';
+import { useGlobalContext } from '../context';
 
 const Step3Form = () => {
+  const { setStep } = useGlobalContext();
   return (
     <Wrapper>
       <form className="form">
@@ -47,8 +48,19 @@ const Step3Form = () => {
           </div>
         </div>
         <div className='form-button'>
-          <a href="#" className='goBack-btn'>Go back</a>
-          <button className='next-btn'>Next Step</button>
+          <a
+            href="#"
+            className='goBack-btn'
+            onClick={() => setStep(current => current - 1)}
+            >
+            Go back
+          </a>
+          <button
+            className='next-btn'
+            onClick={() => setStep(current => current + 1)}
+            >
+            Next Step
+          </button>
         </div>
       </form>
     </Wrapper>

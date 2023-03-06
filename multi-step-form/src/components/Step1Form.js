@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FormControl from './FormControl'
+import { useGlobalContext } from '../context';
 
 const Step1Form = () => {
+    const { setStep } = useGlobalContext();
+    const [info, setInfo] = useState({ name: '', email: '', phone: ''})
+    const [initial, setInitial] = useState(false);
+
+    const handleChange = (e) => {
+        setInitial(true);
+        const name = e.target.name;
+        const value = e.target.value
+        setInfo({...info, [name] : value });
+    }
+
     return (
         <Wrapper>
             <form className='form'>
@@ -16,22 +28,33 @@ const Step1Form = () => {
                         label= "Name"
                         type= "text"
                         placeholder="e.g. Stephen King"
+                        value={info.name}
+                        handleChange={handleChange}
                     />
                     <FormControl
                         name= "email"
                         label= "Email Address"
                         type= "email"
                         placeholder="e.g. stephenking@lorem.com"
+                        value={info.email}
+                        handleChange={handleChange}
                     />
                     <FormControl
                         name= "phone"
                         label= "Phone number"
                         type= "text"
                         placeholder="e.g. +1 234 567 890"
+                        value={info.phone}
+                        handleChange={handleChange}
                     />
                 </div>
                 <div className='form-button' style={{ justifyContent: 'flex-end'}}>
-                    <button className='next-btn'>Next Step</button>
+                    <button
+                        className='next-btn'
+                        onClick={() => setStep(current => current + 1)}
+                        >
+                            Next Step
+                    </button>
                 </div>
             </form>
         </Wrapper>
@@ -59,12 +82,8 @@ width: 100%;
         font-weight: 700;
     }
 
-    .error-msg {
-        display: none;
-    }
-
     .show-error-msg {
-        display: block;
+        display: block !important;
     }
 
     .form-control:not(:last-child) {

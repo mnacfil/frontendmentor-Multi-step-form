@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ToggleSwitch = () => {
+const ToggleSwitch = ({ isChecked, setIsChecked }) => {
+    const handleChecked = () => {
+        setIsChecked(!isChecked);
+    }
+    console.log(isChecked);
     return (
-        <LabelWrapper className='switch'>
-            <input type="checkbox" />
+        <LabelWrapper className='switch' >
+            <input type="checkbox" onClick={handleChecked}/>
             <span class="slider round"></span>
         </LabelWrapper>
     )
@@ -46,7 +50,7 @@ const LabelWrapper = styled.label`
         border-radius: 50%;
     }
     input:checked + .slider {
-        background-color: #2196F3;
+        background-color: var(--marine-blue);
     }
     input:checked + .slider:before {
         transform: translateX(26px);
