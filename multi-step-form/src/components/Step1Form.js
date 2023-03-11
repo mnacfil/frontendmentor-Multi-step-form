@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import FormControl from './FormControl'
 import { useGlobalContext } from '../context';
 
 const Step1Form = () => {
-    const { setStep } = useGlobalContext();
-    const [info, setInfo] = useState({ name: '', email: '', phone: ''})
-    const [initial, setInitial] = useState(false);
+    const { setStep, info, handleChange, checkIfAllFieldFillUp } = useGlobalContext();
 
-    const handleChange = (e) => {
-        setInitial(true);
-        const name = e.target.name;
-        const value = e.target.value
-        setInfo({...info, [name] : value });
+    const checker = () => {
+        checkIfAllFieldFillUp();
+        setStep(current => current + 1)
     }
 
     return (
@@ -28,30 +24,33 @@ const Step1Form = () => {
                         label= "Name"
                         type= "text"
                         placeholder="e.g. Stephen King"
-                        value={info.name}
+                        value={info.name.value}
                         handleChange={handleChange}
+                        isEmpty={info.name.isEmpty}
                     />
                     <FormControl
                         name= "email"
                         label= "Email Address"
                         type= "email"
                         placeholder="e.g. stephenking@lorem.com"
-                        value={info.email}
+                        value={info.email.value}
                         handleChange={handleChange}
+                        isEmpty={info.email.isEmpty}
                     />
                     <FormControl
                         name= "phone"
                         label= "Phone number"
                         type= "text"
                         placeholder="e.g. +1 234 567 890"
-                        value={info.phone}
+                        value={info.phone.value}
                         handleChange={handleChange}
+                        isEmpty={info.phone.isEmpty}
                     />
                 </div>
                 <div className='form-button' style={{ justifyContent: 'flex-end'}}>
                     <button
                         className='next-btn'
-                        onClick={() => setStep(current => current + 1)}
+                        onClick={checker}
                         >
                             Next Step
                     </button>

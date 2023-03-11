@@ -5,7 +5,6 @@ const ToggleSwitch = ({ isChecked, setIsChecked }) => {
     const handleChecked = () => {
         setIsChecked(!isChecked);
     }
-    console.log(isChecked);
     return (
         <LabelWrapper className='switch' >
             <input type="checkbox" onClick={handleChecked}/>

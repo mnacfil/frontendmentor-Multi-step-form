@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import arcadeIcon from '../assets/images/icon-arcade.svg';
-import advancedIcon from '../assets/images/icon-advanced.svg';
-import proIcon from '../assets/images/icon-pro.svg';
+// import arcadeIcon from '../assets/images/icon-arcade.svg';
+// import advancedIcon from '../assets/images/icon-advanced.svg';
+// import proIcon from '../assets/images/icon-pro.svg';
 import ToggleSwitch from './ToggleSwitch';
+import Plan from './Plan';
+import { plans } from '../constant';
 import { useGlobalContext } from '../context';
 
 const Step2Form = () => {
   const { setStep } = useGlobalContext();
   const [isChecked, setIsChecked] = useState(false);
-  const [activePlan, setActivePlan] = useState(true);
+  const [activePlan, setActivePlan] = useState(0);
+
   return (
     <Wrapper>
       <form className="form">
@@ -22,39 +25,20 @@ const Step2Form = () => {
             You have the option of monthly or yearly billing.
           </p>
           <div className="plan-container">
-            <article className={`plan ${activePlan ? 'active-plan': ''}`}>
-              <div className='plan-icon'>
-                <img src={arcadeIcon} alt="arcade icon" />
-              </div>
-              <h4 className='plan-title'>
-                Arcade
-              </h4>
-              <p className='plan-rate'>
-                $9/{isChecked ? 'yr': 'mon'}
-              </p>
-            </article>
-            <article className='plan'>
-              <div className='plan-icon'>
-                <img src={advancedIcon} alt="advance icon" />
-              </div>
-              <h4 className='plan-title'>
-                Advance
-              </h4>
-              <p className='plan-rate'>
-                $12/{isChecked ? 'yr': 'mon'}
-              </p>
-            </article>
-            <article className='plan'>
-              <div className='plan-icon'>
-                <img src={proIcon} alt="pro" />
-              </div>
-              <h4 className='plan-title'>
-                Pro
-              </h4>
-              <p className='plan-rate'>
-                $15/{isChecked ? 'yr': 'mon'}
-              </p>
-            </article>
+            {plans.map((plan, index) => {
+              const { title, rate, icon } = plan;
+              return (
+                  <Plan
+                    active={activePlan === index ? "active-plan": null }
+                    icon={icon}
+                    title={title}
+                    isChecked={isChecked}
+                    rate={rate}
+                    index={index}
+                    setActivePlan={setActivePlan}
+                  />
+                )
+            })}
           </div>
           <div className="plan-mode">
             <p className={!isChecked ? 'active-mode': ''}>Monthly</p>
@@ -106,7 +90,11 @@ const Wrapper = styled.div`
         margin-bottom: 0.5rem;
       }
       .plan-rate {
+        margin-bottom: 6px;
+      }
+      .plan-free {
         margin-bottom: 0;
+        color: var(--marine-blue);
       }
     }
     .active-plan {
