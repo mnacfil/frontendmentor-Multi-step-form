@@ -1,13 +1,14 @@
-import { StepsDesktop, Step1Form, Step2Form, Step3Form, Step4Form, ThankYou } from './components';
+import { StepsDesktop, StepsMobile , Step1Form, Step2Form, Step3Form, Step4Form, ThankYou } from './components';
 import styled from 'styled-components'
 import {useGlobalContext} from './context';
 
 function App() {
   const {step} = useGlobalContext();
+
   return (
     <Wrapper>
       <div className="container">
-        <StepsDesktop />
+        <StepsDesktop className="steps"/>
         {step === 1 && <Step1Form />}
         {step === 2 && <Step2Form />}
         {step === 3 && <Step3Form />}
@@ -31,6 +32,17 @@ const Wrapper = styled.main`
     border-radius: 1rem;
     height: 600px;
     width: 960px;
+  }
+
+  @media (max-width: 600px){
+
+    .container {
+      grid-template-columns: 1fr;
+      width: 90vw;
+      height: 500px;
+      padding: 0 2rem;
+    }
+
   }
 `;
 

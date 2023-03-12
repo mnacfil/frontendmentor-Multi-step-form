@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
-import sidebarBG from '../assets/images/bg-sidebar-desktop.svg'
+import sidebarDesktopBG from '../assets/images/bg-sidebar-desktop.svg'
 import { useGlobalContext } from '../context';
 
 const Steps = () => {
     const { step } = useGlobalContext();
     return (
-        <Wrapper style={{ backgroundImage: `url(${sidebarBG})`}}>
+        <Wrapper style={{ backgroundImage: `url(${sidebarDesktopBG})`}}>
             <div className='steps-container'>
                 {/* <img src={sidebarBG} alt="" /> */}
                 <div className="steps-item">
@@ -43,11 +43,9 @@ const Steps = () => {
 }
 
 const Wrapper = styled.div`
-    /* background-image: url("../assets/images/bg-sidebar-desktop.svg"); */
     background-color: var(--Magnolia);
     border-radius: 1rem;
     width: 250px;
-
 
     .steps-container {
         padding: 2rem;
@@ -87,6 +85,10 @@ const Wrapper = styled.div`
         font-size: 14px;
         letter-spacing: 1px;
         font-weight: 500
+    }
+
+    @media screen and (min-width: 576px){
+        background: blue;
     }
 `;
 

@@ -96,6 +96,7 @@ width: 100%;
     .form-control label {
         font-size: 14px;
         color: var(--marine-blue);
+        font-weight: 500;
     }
     .form-input {
         padding: 12px;
@@ -109,6 +110,20 @@ width: 100%;
     .form-input::placeholder {
         color: var(--Cool-gray);
         font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+        .form-content {
+
+            p {
+                width: 300px;
+                line-height: 1.7;
+                font-size: 18px;
+            }
+            .form-control div{
+                margin-bottom: 4px;
+            }
+        }
     }
 `;
 
