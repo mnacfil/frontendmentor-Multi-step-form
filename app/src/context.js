@@ -22,11 +22,23 @@ const StoreProvider = ({ children }) => {
     }
     // setInfo({...info, [keys[0]]: {...info[keys[0]], isEmpty: true }});
 
-    const checkIfAllFieldFillUp = () => {
+    const hasEmptyFields = () => {
+        let hasEmptyField;
         const keys = Object.keys(info);
-        for(let i = 0; i < keys.length; i++) {
-            setInfo({...info, [keys[i]]: {...info[keys[i]], isEmpty: true }});
+        for(const key of keys) {
+            if(!info[key].value) {
+                setInfo(oldInfo => {
+                    return {...oldInfo, [key]: {...info[key], isEmpty: true }}
+                });
+                hasEmptyField = true;
+            } else {
+                setInfo(oldInfo => {
+                    return {...oldInfo, [key]: {...info[key], isEmpty: false }}
+                });
+                hasEmptyField = false;
+            }
         }
+        return hasEmptyField;
     }
 
     return(
@@ -38,7 +50,7 @@ const StoreProvider = ({ children }) => {
                 handleChange,
                 setStep,
                 setSummary,
-                checkIfAllFieldFillUp
+                hasEmptyFields
             }}
         >
             {children}

@@ -4,16 +4,21 @@ import FormControl from './FormControl'
 import { useGlobalContext } from '../context';
 
 const Step1Form = () => {
-    const { setStep, info, handleChange, checkIfAllFieldFillUp } = useGlobalContext();
+    const { setStep, info, handleChange, hasEmptyFields} = useGlobalContext();
 
-    const checker = () => {
-        checkIfAllFieldFillUp();
-        setStep(current => current + 1)
+    const proceedToStep2 = () => {
+        if(!hasEmptyFields()){
+            setStep(current => current + 1)
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
     }
 
     return (
         <Wrapper>
-            <form className='form'>
+            <form className='form' onSubmit={handleSubmit}>
                 <div className="form-content">
                     <h2>Personal Info</h2>
                     <p>
@@ -50,7 +55,7 @@ const Step1Form = () => {
                 <div className='form-button' style={{ justifyContent: 'flex-end'}}>
                     <button
                         className='next-btn'
-                        onClick={checker}
+                        onClick={proceedToStep2}
                         >
                             Next Step
                     </button>
@@ -63,7 +68,6 @@ const Step1Form = () => {
 const Wrapper = styled.div`
 
 width: 100%;
-
 
     .form-control {
         display: flex;
