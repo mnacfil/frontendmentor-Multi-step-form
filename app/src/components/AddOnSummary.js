@@ -5,7 +5,7 @@ const AddOnSummary = ({title, rate, mode}) => {
         <div className="item">
             <h4>{title}</h4>
             <p className='item-rate'>
-                +${rate}/{mode === 'Monthly' ? 'mon' : 'yr'}
+                +${mode === 'Monthly' ? rate.monthly : rate.yearly }/{mode === 'Monthly' ? 'mon' : 'yr'}
             </p>
         </div>
     )

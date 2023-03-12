@@ -28,7 +28,7 @@ const AddOn = ({title, info, rate, isChecked, index}) => {
                 <p>{info}</p>
             </div>
             <p className='item-rate'>
-                +${rate}/{summary.mode === 'Monthly' ? 'mo': 'yr'}
+                +${summary.mode === 'Monthly' ? rate.monthly : rate.yearly }/{summary.mode === 'Monthly' ? 'mo': 'yr'}
             </p>
         </article>
     )

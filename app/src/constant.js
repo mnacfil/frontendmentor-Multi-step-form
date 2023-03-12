@@ -9,9 +9,9 @@ const plans = [
 ]
 
 const addsOn = [
-    { title: 'Online Service', rate: 1, info: "Access to multiplayer games", isChecked: false},
-    { title: 'Larger Storage', rate: 2, info: "Extra 1TB of cloud save", isChecked: false},
-    { title: 'Customizable Profile', rate: 2, info: "Custom theme on your profile", isChecked: false},
+    { title: 'Online Service', rate: {monthly: 1, yearly: 10}, info: "Access to multiplayer games", isChecked: false},
+    { title: 'Larger Storage', rate: {monthly: 2, yearly: 20}, info: "Extra 1TB of cloud save", isChecked: false},
+    { title: 'Customizable Profile', rate: {monthly: 2, yearly: 20}, info: "Custom theme on your profile", isChecked: false},
 ]
 
 export { plans, addsOn }

@@ -19,15 +19,11 @@ const Step3Form = () => {
           </p>
           <div className="addOns-container">
             {addsOn.map((article, index) => {
-              const { title, info, rate, isChecked } = article;
               return (
                 <AddOn
                   key={index}
-                  isChecked={isChecked}
-                  title={title}
-                  info={info}
-                  rate={rate}
                   index={index}
+                  {...article}
                 />
               )
             })}

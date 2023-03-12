@@ -11,7 +11,11 @@ const Step4Form = () => {
   const addsOnRate = checkAddsOn.map(item => item.rate)
 
   for(const rate of addsOnRate){
-    total+= rate;
+    if(mode === 'Monthly') {
+      total+= rate.monthly;
+    } else {
+      total+= rate.yearly;
+    }
   }
   total+= plan.rate
 
@@ -41,10 +45,11 @@ const Step4Form = () => {
                   ${plan.rate}/{mode === 'Monthly' ? 'mon' : 'yr'}
                 </p>
               </div>
-              {checkAddsOn.map(addOn => {
+              {checkAddsOn.map((addOn, index) => {
                 const { title, rate } = addOn;
                 return (
                   <AddOnSummary
+                    key={index}
                     title={title}
                     rate={rate}
                     mode={mode}
