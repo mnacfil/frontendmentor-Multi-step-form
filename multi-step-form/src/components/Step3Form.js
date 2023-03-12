@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import { addsOn } from '../constant';
+import AddOn from './AddOn';
 import { useGlobalContext } from '../context';
 
 const Step3Form = () => {
-  const { setStep } = useGlobalContext();
+  const { setStep, summary, setSummary } = useGlobalContext();
+
   return (
     <Wrapper>
       <form className="form">
@@ -15,36 +18,19 @@ const Step3Form = () => {
             Add-ons help enhance your gaming experience.
           </p>
           <div className="addOns-container">
-            <article className='item active-adds-on'>
-              <input type="checkbox" className='item-check' />
-              <div>
-                <h4>Online service</h4>
-                <p>Access to multiplayer games</p>
-              </div>
-              <p className='item-rate'>
-                +$1/mo
-              </p>
-            </article>
-            <article className='item'>
-              <input type="checkbox" className='item-check' />
-              <div>
-                <h4>Larger storage</h4>
-                <p>Extra 1TB of cloud save</p>
-              </div>
-              <p className='item-rate'>
-                +$2/mo
-              </p>
-            </article>
-            <article className='item'>
-              <input type="checkbox" className='item-check' />
-              <div>
-                <h4>Customizable Profile</h4>
-                <p>Custom theme on your profile</p>
-              </div>
-              <p className='item-rate'>
-                +$2/mo
-              </p>
-            </article>
+            {addsOn.map((article, index) => {
+              const { title, info, rate, isChecked } = article;
+              return (
+                <AddOn
+                  key={index}
+                  isChecked={isChecked}
+                  title={title}
+                  info={info}
+                  rate={rate}
+                  index={index}
+                />
+              )
+            })}
           </div>
         </div>
         <div className='form-button'>
@@ -80,14 +66,10 @@ const Wrapper = styled.div`
       align-items: center;
       border-radius: 0.5rem;
 
-
       .item-check {
         margin-right: 1.5rem;
+        accent-color: var(--purplish-blue);
       }
-      /* .item-check:checked {
-        background-color: var(--purplish-blue) !important;
-        color: red;
-      } */
       .item-rate {
         color: var(--purplish-blue);
       }
@@ -106,15 +88,15 @@ const Wrapper = styled.div`
         font-size: 14px;
       }
     }
+    .active-addOn {
+      border: 1px solid var(--purplish-blue);
+      background-color: var(--Magnolia);
+    }
     .item:not(:last-child) {
       margin-bottom: 1.5rem;
     }
     .item:hover {
       border: 1px solid var(--purplish-blue);
-    }
-    .active-adds-on {
-      border: 1px solid var(--purplish-blue);
-      background-color: var(--Magnolia);
     }
   }
 `;

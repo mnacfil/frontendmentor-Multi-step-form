@@ -1,10 +1,14 @@
 import React,{ useContext, useState } from "react";
-
+import { addsOn } from "./constant";
 const StoreContext = React.createContext();
 
 const StoreProvider = ({ children }) => {
     const [step, setStep] = useState(1);
-    const [summary, setSummary] = useState({plan: 'Arcade', mode: 'mon', addsOn: "Online Service"});
+    const [summary, setSummary] = useState({
+        plan: { title: '', rate: 0},
+        mode: '',
+        addsOn: addsOn
+    });
     const [info, setInfo] = useState({
         name: {value: '', isEmpty: false},
         email: {value: '', isEmpty: false},

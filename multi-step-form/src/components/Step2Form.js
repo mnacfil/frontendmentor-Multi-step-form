@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
-// import arcadeIcon from '../assets/images/icon-arcade.svg';
-// import advancedIcon from '../assets/images/icon-advanced.svg';
-// import proIcon from '../assets/images/icon-pro.svg';
 import ToggleSwitch from './ToggleSwitch';
 import Plan from './Plan';
 import { plans } from '../constant';
@@ -29,6 +25,7 @@ const Step2Form = () => {
               const { title, rate, icon } = plan;
               return (
                   <Plan
+                  key={index}
                     active={activePlan === index ? "active-plan": null }
                     icon={icon}
                     title={title}
