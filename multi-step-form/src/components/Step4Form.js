@@ -1,10 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../context'
+import AddOnSummary from './AddOnSummary'
 
 const Step4Form = () => {
   const { setStep, summary } = useGlobalContext();
-  const {plan, mode} = summary;
+  const {plan, mode, addsOn} = summary;
+  let total = 0
+  const checkAddsOn = addsOn.filter(item => item.isChecked === true);
+  const addsOnRate = checkAddsOn.map(item => item.rate)
+
+  for(const rate of addsOnRate){
+    total+= rate;
+  }
+  total+= plan.rate
+
   return (
     <Wrapper>
       <form className='form'>
@@ -31,26 +41,24 @@ const Step4Form = () => {
                   ${plan.rate}/{mode === 'Monthly' ? 'mon' : 'yr'}
                 </p>
               </div>
-              {/* <div className="item">
-                <h4>Online service</h4>
-                <p className='item-rate'>
-                  +$1/mon
-                </p>
-              </div>
-              <div className="item">
-                <h4>Larger Storage</h4>
-                <p className='item-rate'>
-                  +$2/mon
-                </p>
-              </div> */}
+              {checkAddsOn.map(addOn => {
+                const { title, rate } = addOn;
+                return (
+                  <AddOnSummary
+                    title={title}
+                    rate={rate}
+                    mode={mode}
+                  />
+                )
+              })}
             </div>
             <div className="summary-total">
               <h4>
-                Total (per {mode === 'Monthly' ? 'monthly' : 'year'})
+                Total (per {mode === 'Monthly' ? 'month' : 'year'})
               </h4>
               <p className='total'>
-                  ${plan.rate}/mon
-                </p>
+                  ${total}/{mode === 'Monthly' ? 'mo' : 'yr'}
+              </p>
             </div>
           </div>
         </div>
@@ -80,7 +88,6 @@ const Wrapper = styled.div`
     background-color: var(--Alabaster);
     padding: 1rem;
     border-radius: 0.5rem;
-
     .item {
       display: flex;
       justify-content: space-between;
