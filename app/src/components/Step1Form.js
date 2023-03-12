@@ -85,10 +85,6 @@ width: 100%;
         font-weight: 700;
     }
 
-    .show-error-msg {
-        display: block !important;
-    }
-
     .form-control:not(:last-child) {
         margin-bottom: 1.5rem;
     }
@@ -106,6 +102,9 @@ width: 100%;
     .form-input:focus {
         outline: 1px solid var(--purplish-blue);
         border: none;
+    }
+    .empty-field {
+        border: 1px solid var(--strawberry-red);
     }
     .form-input::placeholder {
         color: var(--Cool-gray);

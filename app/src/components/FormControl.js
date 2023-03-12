@@ -12,7 +12,7 @@ const FormControl = ({name, type, placeholder, label, value, handleChange, isEmp
                 id={name}
                 name={name}
                 placeholder={placeholder}
-                className='form-input'
+                className={`form-input ${isEmpty && "empty-field"}`}
                 onChange={handleChange}
                 value={value}
             />
